@@ -1,0 +1,61 @@
+public class BinaryTreeTester{
+    // Driver Program to test above functions 
+    public static void main(String[] args) { 
+        BinarySearchTree tree = new BinarySearchTree(); 
+  
+        /* Let us create following BST 
+              50 
+           /     \ 
+          30      70 
+         /  \    /  \ 
+       20   40  60   80 */
+        tree.insert(50); 
+        tree.insert(30); 
+        tree.insert(20); 
+        tree.insert(40); 
+        tree.insert(70); 
+        tree.insert(60); 
+        tree.insert(80); 
+
+        System.out.println("Insert should already work, if it doesn't you done hecked up.");
+        
+        //Check printing methods
+        System.out.print("In-Order: "); tree.inorder(); System.out.println("| Expected: 20 30 40 50 60 70 80");
+        System.out.print("Post-Order: "); tree.postOrder(); System.out.println("| Expected: 20 40 30 60 80 70 50");
+        System.out.print("Pre-Order: "); tree.preOrder(); System.out.println("| Expected: 50 30 20 40 70 60 80");
+        
+        //Check Find method
+        /* Find the root */ System.out.print("Find 50: " + tree.find(50)); System.out.println(" | Expected: 50");
+        /* Find a parent */ System.out.print("Find 30: " + tree.find(30)); System.out.println(" | Expected: 30");
+        /* Find a leaf */ System.out.print("Find 60: " + tree.find(60)); System.out.println(" | Expected: 60");
+        /* Find a DNE */ System.out.print("Find 42: " + tree.find(42)); System.out.println(" | Expected: null");
+        
+        //Check Contains method
+        /* Contains root */ System.out.print("Contains 50? " + tree.contains(50)); System.out.println(" | Expected: true");
+        /* Contains parent */ System.out.print("Contains 30? " + tree.contains(30)); System.out.println(" | Expected: true");
+        /* Contains leaf */ System.out.print("Contains 60? " + tree.contains(60)); System.out.println(" | Expected: true");
+        /* Contains DNE */ System.out.print("Contains 42? " + tree.contains(42)); System.out.println(" | Expected: false");
+        
+        //Check Max, min, size
+        System.out.print("Maximum: " + tree.max()); System.out.println(" | Expected: 80");
+        System.out.print("Minimum: " + tree.min()); System.out.println(" | Expected: 20");
+        System.out.print("Size: " + tree.size()); System.out.println(" | Expected: 7");
+        
+        //Check Height
+        /* Height on a perfect tree */ System.out.print("Height: " + tree.height()); System.out.println(" | Expected: 2");
+        tree.insert(90);
+        /* Height whre one path is longer */ System.out.print("Height: " + tree.height()); System.out.println(" | Expected: 3");
+        tree.inorder(); System.out.println(" | Expected: 20 30 40 50 60 70 80 90");
+        
+        //Check Remove method
+        /* Remove child */ tree.remove(90); tree.inorder(); System.out.println(" | Expected: 20 30 40 50 60 70 80");
+        /* Remove parent of one */ tree.insert(90); tree.remove(80); tree.inorder(); System.out.println(" | Expected: 20 30 40 50 60 70 90");
+        /* Remove root */ tree.remove(50); tree.inorder(); System.out.println(" | Expected: 20 30 40 60 70 90");
+        /* remove parent of two */ tree.remove(30); tree.inorder(); System.out.println(" | Expected: 20 40 60 70 90");
+        
+        //Reset tree in case you want to do anythnig else
+        tree = new BinarySearchTree(); tree.insert(50); tree.insert(30); tree.insert(20);
+        tree.insert(40); tree.insert(70); tree.insert(60); tree.insert(80);
+        
+    }
+}
